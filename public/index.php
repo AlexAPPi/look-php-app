@@ -15,7 +15,13 @@ define('ROOT_APP_DIR', dirname(__DIR__));
 try
 {
     require ROOT_APP_DIR . '/../lookphp.loc/look/autoload.php';
-    echo 'hello is simple app';
+    
+    $page = new \Look\Page\HtmlPage();
+    
+    $page->setMeta('hello', 'hello');
+    $page->setCanonical('https://value/');
+    
+    echo $page;
 }
 catch (Throwable $ex) {
     err_log($ex);
