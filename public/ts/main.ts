@@ -13,21 +13,21 @@ session.open(10)
     var value1 = 'hello test';
     var value2 = 'hello is 2';
     
-    session.get('Tunnel.checkTunnelTokenIn', {data1: value1, data2: value2}, true, QueryMethod.POST)
+    session.get('Tunnel.checkTokenTunnelIn', {data1: value1, data2: value2}, true, QueryMethod.POST)
     .onSuccess(function(data : any) {
         console.log(data);
     }).onError(function(data : any) {
         console.log(data);
     });
     
-    session.get('Tunnel.checkTunnelTokenOut')
+    session.get('Tunnel.checkTokenTunnelOut')
     .onSuccess((data : string) => {
         console.log(session.token.privateKey.decrypt(data));
     });
 
     // check token expired
     setTimeout(function() {
-        session.get('Tunnel.checkTunnelTokenIn', {data: value1}, true, QueryMethod.POST)
+        session.get('Tunnel.checkTokenTunnelIn', {data: value1}, true, QueryMethod.POST)
         .onSuccess(function(data : any) {
             console.log(data);
         }).onError(function(data : any) {
